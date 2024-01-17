@@ -9,7 +9,7 @@ app.http('CreateRequirement', {
         const name = request.query.get('name') || await request.text() || 'world';
         var requirement = request.body;
         var data = JSON.stringify(requirement);
-        console.log(`12--> ${data}`);
+        context.log(`12--> ${data}`);
         return { body: `Hello, ${name}!, ${data}` };
     }
 });
