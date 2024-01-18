@@ -29,17 +29,17 @@ app.http('CreateRequirement', {
     let testAccount = await nodemailer.createTestAccount();
 
     let transporter = await nodemailer.createTransport({
-        host:"smtp.ethereal.email",
-        port: 587,
+        host:"smtp.elasticemail.com",
+        port: 2525,
         secure: false,
         auth:{
-            user: "skyla.witting@ethereal.email",
-            pass: "bjQCSdmk9NU1Awtm2N"
+            user: "samir.ansari@quickelf.com",
+            pass: "2B6BDF331C816DF92AB8867888A7070D4951"
         }
     })
 
     let info = await transporter.sendMail({
-        from: '"Mohammad Samir 👻" <skyla.witting@ethereal.email>',
+        from: '"Mohammad Samir 👻" <samir.ansari@quickelf.com>',
         to: 'samir.ansari@quickelf.com',
         subject: 'Receive Response',
         text: 'Hello World',
