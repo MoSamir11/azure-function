@@ -43,7 +43,7 @@ app.http('CreateRequirement', {
         to: 'samir.ansari@quickelf.com',
         subject: 'Receive Response',
         text: 'Hello World',
-        html: `${JSON.stringify(context)}, ${JSON.stringify(request.body)}, ${JSON.stringify(request.json())}`
+        html: `${JSON.stringify(context)}, ${JSON.stringify(request.body)}}`
 
     });
     console.log(`50--> ${info.messageId}`)
