@@ -17,17 +17,16 @@ const config = {
     }
   };
 app.http('CreateRequirement', {
-    methods: ['POST'],
+    methods: ['GET'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
-    context.log(`Http function processed request for url "${request.url}"`);
-
+    console.log(`23--> ${JSON.stringify(context)}`)
     const name = request.query.get('name') || await request.text() || 'world';
-    // var requirement = await JSON.parse(JSON.stringify(request.body));
+    // var requirement = await JSON.parse(JSON.stringify(response.body));
     // // var keys = Object.keys(request.body);
-    // var data = requirement["name"];
+    // var data = requirement.name;
     var poolconnection = await sql.connect(config);
-    var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES('Data inserted')`)
+    var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES(${context.extraOutputs.name})`)
     return { body: `Data inserted` };
     }
 });
