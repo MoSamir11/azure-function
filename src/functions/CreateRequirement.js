@@ -24,7 +24,7 @@ app.http('CreateRequirement', {
     context.log(`Http function processed request for url "${request.url}"`);
 
     const name = request.query.get('name') || await request.text() || 'world';
-    var requirement = request.body;
+    var requirement = await request.json();
     // var keys = Object.keys(request.body);
     // var data = request.text();
     var poolconnection = await sql.connect(config);
