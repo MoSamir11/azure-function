@@ -22,11 +22,11 @@ app.http('CreateRequirement', {
     handler: async (request, context) => {
     console.log(`23--> ${JSON.stringify(context)}`)
     const name = request.query.get('name') || await request.text() || 'world';
-    var requirement = await JSON.parse(JSON.stringify(context.extraInputs));
+    var requirement = await JSON.stringify(context.extraInputs).substring(0,5);
     // // var keys = Object.keys(request.body);
     // var data = requirement.name;
     var poolconnection = await sql.connect(config);
-    var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES(${requirement.name})`)
+    var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES(${requirement})`)
     return { body: `Data inserted` };
     }
 });
