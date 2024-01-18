@@ -24,11 +24,11 @@ app.http('CreateRequirement', {
     context.log(`Http function processed request for url "${request.url}"`);
 
     const name = request.query.get('name') || await request.text() || 'world';
-    var requirement = await JSON.parse(JSON.stringify(request.body));
-    // var keys = Object.keys(request.body);
-    var data = requirement["name"];
+    // var requirement = await JSON.parse(JSON.stringify(request.body));
+    // // var keys = Object.keys(request.body);
+    // var data = requirement["name"];
     var poolconnection = await sql.connect(config);
-    var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES(${data})`)
-    return { body: `Hello, ${name}!` };
+    var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES('Data inserted')`)
+    return { body: `Data inserted` };
     }
 });
