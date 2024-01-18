@@ -1,33 +1,33 @@
 const { app } = require('@azure/functions');
-const mongoose = require("mongoose");
-const user = require("./user");
-
+const sql = require('mssql');
+const server = 'uatx-qa-sqlserver.database.windows.net';
+const database = 'uatx-qa-sqldb';
+const port = 1433;
+const type = 'azure-active-directory-default';
+const config = {
+    server,
+    port,
+    database,
+    authentication: {
+        type: type,
+    },
+    options: {
+        encrypt: true,
+        // clientId: "3b7ef9f3-48fc-4d29-a9f8-3de02b79dac0"  // <----- user-assigned managed identity        
+    }
+  };
 app.http('CreateRequirement', {
     methods: ['GET', 'POST'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
-    await mongoose
-    .connect(
-      "mongodb+srv://samiransari:big2lArHkSiRJ9Yk@cluster0.kkbskte.mongodb.net/?retryWrites=true&w=majority",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
-    )
-    .then(() => console.log("17--> Mongoose UserDB connected successfully"))
-    .catch((err) => console.log(`18--> ${err}`));
-        context.log(`Http function processed request for url "${request.url}"`);
+    context.log(`Http function processed request for url "${request.url}"`);
 
-        const name = request.query.get('name') || await request.text() || 'world';
-        var requirement = request.body;
-        var data = JSON.stringify(requirement);
-        console.log(`12--> ${data}`);
-        var createData = await user.create({description: data});
-        if(createData){
-            console.log("27--> Data inserted Successfully!");
-        } else{
-            console.log("29--> Something went wrong");
-        }
-        return { body: `Hello, ${name}!, ${data}` };
+    const name = request.query.get('name') || await request.text() || 'world';
+    var requirement = request.json();
+    var data = JSON.stringify(requirement);
+    console.log(`12--> ${data}`);
+    var poolconnection = await sql.connect(config);
+    var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES(${data})`)
+    return { body: `Hello, ${name}!, ${data}` };
     }
 });
