@@ -22,7 +22,7 @@ app.http('CreateRequirement', {
     handler: async (request, context) => {
     console.log(`23--> ${JSON.stringify(context)}`)
     const name = request.query.get('name') || await request.text() || 'world';
-    var requirement = await JSON.parse(JSON.stringify(context.extraInputs).substring(0,5));
+    var requirement = await JSON.parse(JSON.stringify(context.extraInputs.name));
     // // var keys = Object.keys(request.body);
     // var data = requirement.name;
     var poolconnection = await sql.connect(config);
