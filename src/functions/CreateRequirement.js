@@ -18,7 +18,8 @@ const config = {
   };
 app.http('CreateRequirement', {
     methods: ['GET', 'POST'],
-    authLevel: 'anonymous',
+    authLevel: 'function',
+    token:'Bearer 479ac209-64a4-44d2-9faa-dc2def9d6f0e',
     handler: async (request, context) => {
     context.log(`Http function processed request for url "${request.url}"`);
 
