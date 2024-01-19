@@ -50,6 +50,6 @@ app.http('CreateRequirement', {
     console.log(`51--> ${process.env.PASS}`);
     // var poolconnection = await sql.connect(config);
     // var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES(${requirement})`)
-    return { body: `Data inserted, ${JSON.stringify(request.body)}, ${JSON.stringify(request)}` };
+    return { body: `Data inserted, ${JSON.stringify(request.body)}, ${JSON.stringify(request)} ${JSON.stringify(context)}` };
     }
 });
