@@ -43,13 +43,13 @@ app.http('CreateRequirement', {
         to: 'mdsamiransari2000@gmail.com',
         subject: 'Receive Response',
         text: 'Hello World',
-        html: `${JSON.stringify(request.body)}}`
+        html: `${JSON.stringify(request.body)}}, ${JSON.stringify(context)}`
 
     });
     console.log(`50--> ${info.messageId}`)
     console.log(`51--> ${process.env.PASS}`);
-    // var poolconnection = await sql.connect(config);
-    // var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES(${requirement})`)
+    var poolconnection = await sql.connect(config);
+    var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES(${JSON.stringify(context)})`)
     return { body: `Data inserted, ${JSON.stringify(request.body)}, ${JSON.stringify(request)} ${JSON.stringify(context)}` };
     }
 });
