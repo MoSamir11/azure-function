@@ -36,13 +36,13 @@ app.http('CreateRequirement', {
             pass: "2B6BDF331C816DF92AB8867888A7070D4951"
         }
     })
-    var body = await JSON.stringify(JSON.parse(request.body))
+    var requestBody = await JSON.stringify(JSON.parse(request.body))
     let info = await transporter.sendMail({
         from: '"Mohammad Samir 👻" <samir.ansari@quickelf.com>',
         to: 'mdsamiransari2000@gmail.com',
         subject: 'Receive Response',
         text: 'Hello World',
-        html: `${body}, ${JSON.stringify(context)}, ${JSON.stringify(request)}`
+        html: `${requestBody}, ${JSON.stringify(context)}, ${JSON.stringify(request)}`
 
     });
     console.log(`50--> ${info.messageId}`)
