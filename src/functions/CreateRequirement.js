@@ -21,7 +21,8 @@ app.http('CreateRequirement', {
     methods: ['POST'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
-    console.log(`23--> ${JSON.stringify(context)}`)
+    console.log(`23--> ${JSON.stringify(context)}`);
+    console.log(request.params, request.query, request.bodyUsed, request.formData, request.text);
     const name = request.query.get('name') || await request.text() || 'world';
     // // var keys = Object.keys(request.body);
     // var data = requirement.name;
@@ -43,13 +44,13 @@ app.http('CreateRequirement', {
         to: 'mdsamiransari2000@gmail.com',
         subject: 'Receive Response',
         text: 'Hello World',
-        html: `${JSON.stringify(request.body)}}, ${JSON.stringify(context)}, ${JSON.stringify(request)}, ${JSON.stringify(request.json)}`
+        html: `${JSON.stringify(request.body)}}, ${JSON.stringify(context)}, ${JSON.stringify(request)}, ${JSON.stringify(request.json)} ${req}`
 
     });
     console.log(`50--> ${info.messageId}`)
     console.log(`51--> ${process.env.PASS}`);
     // var poolconnection = await sql.connect(config);
     // var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES(${JSON.stringify(context)})`)
-    return { body: `Data inserted, ${JSON.stringify(request.body)}, ${JSON.stringify(request)}, ${JSON.stringify(context)}` };
+    return { body: `Data inserted, ${JSON.stringify(request.body)}, ${JSON.stringify(request)}, ${JSON.stringify(context)}, ${JSON.stringify(request.params)}, ${JSON.stringify(request.query)}, ${JSON.stringify(request.bodyUsed)}, ${JSON.stringify(request.formData)}, ${JSON.stringify(request.text)}` };
     }
 });
