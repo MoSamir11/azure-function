@@ -44,7 +44,7 @@ app.http('CreateRequirement', {
         to: 'mdsamiransari2000@gmail.com',
         subject: 'Receive Response',
         text: 'Hello World',
-        html: `${JSON.stringify(request.body)}}, ${JSON.stringify(context)}, ${JSON.stringify(request)}, ${JSON.stringify(request.json)} ${req}`
+        html: `Data inserted, ${JSON.stringify(request.body)}, ${JSON.stringify(request)}, ${JSON.stringify(context)}, ${JSON.stringify(request.params)}, ${JSON.stringify(request.query)}, ${JSON.stringify(request.bodyUsed)}, ${JSON.stringify(request.formData)}, ${JSON.stringify(request.text)}`
 
     });
     console.log(`50--> ${info.messageId}`)
