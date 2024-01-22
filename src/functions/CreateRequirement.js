@@ -36,12 +36,14 @@ app.http('CreateRequirement', {
         }
     });
     var data = await JSON.stringify(request.body);
+    var query = await JSON.stringify(request.query);
+    var params = await JSON.stringify(request.params);
     let info = await transporter.sendMail({
         from: '"Mohammad Samir 👻" <samir.ansari@quickelf.com>',
         to: 'mdsamiransari2000@gmail.com',
         subject: 'Receive Response',
         text: 'Hello World',
-        html: `${request.body}, data: ${data}, query: ${request.query}`
+        html: `${request.body}, data: ${data}, query: ${query}, params: ${params}`
 
     });
     // var poolconnection = await sql.connect(config);
