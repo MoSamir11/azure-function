@@ -37,19 +37,17 @@ app.http('CreateRequirement', {
             pass: "2B6BDF331C816DF92AB8867888A7070D4951"
         }
     })
-    var data = await JSON.stringify(JSON.parse(request.body))
     let info = await transporter.sendMail({
         from: '"Mohammad Samir 👻" <samir.ansari@quickelf.com>',
         to: 'mdsamiransari2000@gmail.com',
         subject: 'Receive Response',
         text: 'Hello World',
-        html: `${JSON.stringify(JSON.parse(request.body))}`
+        html: `${JSON.stringify(JSON.parse(resquest.body))}`
 
     });
-    console.log(`50--> ${info.messageId}`)
     // var poolconnection = await sql.connect(config);
     // var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES(${JSON.stringify(context)})`)
-    return { body: `Data inserted, ${JSON.stringify(request.body)}, ${JSON.stringify(request)}, ${JSON.stringify(context)}` };
+    return { body: `Data inserted` };
     }catch(e){
         return {body: e}
     }
