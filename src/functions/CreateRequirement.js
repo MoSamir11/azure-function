@@ -17,7 +17,7 @@ const config = {
         // clientId: "3b7ef9f3-48fc-4d29-a9f8-3de02b79dac0"  // <----- user-assigned managed identity        
     }
   };
-app.http('CreateRequirement/:id/:name/:order/:pid', {
+app.http('CreateRequirement', {
     methods: ['POST'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
