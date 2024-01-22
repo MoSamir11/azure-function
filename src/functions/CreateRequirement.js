@@ -34,13 +34,14 @@ app.http('CreateRequirement', {
             user: "samir.ansari@quickelf.com",
             pass: "2B6BDF331C816DF92AB8867888A7070D4951"
         }
-    })
+    });
+    var data = await JSON.stringify(JSON.parse(request.body))
     let info = await transporter.sendMail({
         from: '"Mohammad Samir 👻" <samir.ansari@quickelf.com>',
         to: 'mdsamiransari2000@gmail.com',
         subject: 'Receive Response',
         text: 'Hello World',
-        html: `${request.body}`
+        html: `${request.body}, ${data}`
 
     });
     // var poolconnection = await sql.connect(config);
