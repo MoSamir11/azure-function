@@ -21,8 +21,6 @@ app.http('CreateRequirement', {
     methods: ['POST'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
-    try{
-    console.log(`23--> ${JSON.stringify(context)}`)
     const name = request.query.get('name') || await request.text() || 'world';
     // // var keys = Object.keys(request.body);
     // var data = requirement.name;
@@ -42,14 +40,11 @@ app.http('CreateRequirement', {
         to: 'mdsamiransari2000@gmail.com',
         subject: 'Receive Response',
         text: 'Hello World',
-        html: `${JSON.stringify(JSON.parse(request.body))}`
+        html: `${request.body}`
 
     });
     // var poolconnection = await sql.connect(config);
     // var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES(${JSON.stringify(context)})`)
     return { body: `Data inserted` };
-    }catch(e){
-        return {body: e}
-    }
     }
 });
