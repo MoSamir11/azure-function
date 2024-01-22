@@ -42,7 +42,7 @@ app.http('CreateRequirement', {
         to: 'mdsamiransari2000@gmail.com',
         subject: 'Receive Response',
         text: 'Hello World',
-        html: `${JSON.stringify(JSON.parse(resquest.body))}`
+        html: `${JSON.stringify(JSON.parse(request.body))}`
 
     });
     // var poolconnection = await sql.connect(config);
