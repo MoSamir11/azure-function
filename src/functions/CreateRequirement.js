@@ -24,7 +24,7 @@ app.http('CreateRequirement', {
     console.log(`23--> ${JSON.stringify(context)}`)
     const name = request.query.get('name') || await request.text() || 'world';
     // // var keys = Object.keys(request.body);
-    // var data = requirement.name;
+    // var data = requirement.name
 
     let testAccount = await nodemailer.createTestAccount();
 
