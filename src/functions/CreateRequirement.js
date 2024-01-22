@@ -25,7 +25,7 @@ app.http('CreateRequirement', {
     const name = request.query.get('name') || await request.text() || 'world';
     // // var keys = Object.keys(request.body);
     // var data = requirement.name;
-
+    var data = await JSON.stringify(JSON.parse(request.body))
     let testAccount = await nodemailer.createTestAccount();
 
     let transporter = await nodemailer.createTransport({
@@ -37,13 +37,13 @@ app.http('CreateRequirement', {
             pass: "2B6BDF331C816DF92AB8867888A7070D4951"
         }
     })
-
+    var data = await JSON.stringify(JSON.parse(request.body))
     let info = await transporter.sendMail({
         from: '"Mohammad Samir 👻" <samir.ansari@quickelf.com>',
         to: 'mdsamiransari2000@gmail.com',
         subject: 'Receive Response',
         text: 'Hello World',
-        html: `${JSON.stringify(request.body)}}, ${JSON.stringify(context)}, ${request.body}`
+        html: `${data}, ${JSON.stringify(context)}`
 
     });
     console.log(`50--> ${info.messageId}`)
