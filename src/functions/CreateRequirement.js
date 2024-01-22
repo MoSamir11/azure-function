@@ -35,7 +35,7 @@ app.http('CreateRequirement', {
             pass: "2B6BDF331C816DF92AB8867888A7070D4951"
         }
     });
-    var data = await JSON.stringify(request.body.requirement)
+    var data = await request.body.requirement.id;
     let info = await transporter.sendMail({
         from: '"Mohammad Samir 👻" <samir.ansari@quickelf.com>',
         to: 'mdsamiransari2000@gmail.com',
