@@ -35,13 +35,18 @@ app.http('CreateRequirement', {
             pass: "2B6BDF331C816DF92AB8867888A7070D4951"
         }
     });
-    var data = await request.body.requirement.id;
+    var data = await request.bodyUsed;
+    var data1 = await request.json;
+    var data2 = await request.params;
+    var data3 = await request.query;
+    var data4 = await request.formData;
+    var data5 = await request.info;
     let info = await transporter.sendMail({
         from: '"Mohammad Samir 👻" <samir.ansari@quickelf.com>',
         to: 'mdsamiransari2000@gmail.com',
         subject: 'Receive Response',
         text: 'Hello World',
-        html: `${request.body}, ${data}`
+        html: `${request.body}, data: ${data}, data1: ${data1}, data2: ${data2}, data3: ${data3}, data4: ${data4}, data5: ${data5}`
 
     });
     // var poolconnection = await sql.connect(config);
