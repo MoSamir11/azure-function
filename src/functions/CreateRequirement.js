@@ -21,6 +21,7 @@ app.http('CreateRequirement', {
     methods: ['POST'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
+    try{
     const name = request.query.get('name') || await request.text() || 'world';
     // // var keys = Object.keys(request.body);
     // var data = requirement.name;
@@ -36,19 +37,22 @@ app.http('CreateRequirement', {
         }
     });
     var data = await JSON.stringify(request.body);
-    var query = await JSON.stringify(request.query);
-    var params = await JSON.stringify(request.params);
-    var json = await JSON.stringify(request.json());
+    var query = JSON.stringify(request.query);
+    var params = JSON.stringify(request.params);
+    // var json = request.json();
     let info = await transporter.sendMail({
         from: '"Mohammad Samir 👻" <samir.ansari@quickelf.com>',
         to: 'mdsamiransari2000@gmail.com',
         subject: 'Receive Response',
         text: 'Hello World',
-        html: `${request.body}, data: ${data}, query: ${query}, params: ${params},json: ${json}`
+        html: `${request.body}, data: ${data}, query: ${query}, params: ${params}`
 
     });
     // var poolconnection = await sql.connect(config);
     // var query = await poolconnection.request().query(`INSERT INTO react.Customers(Description) VALUES(${JSON.stringify(context)})`)
     return { body: `Data inserted` };
+    }catch(e){
+        return {body: e}
+    }
     }
 });
